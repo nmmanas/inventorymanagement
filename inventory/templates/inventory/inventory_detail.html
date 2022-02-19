@@ -1,4 +1,5 @@
 {% extends 'inventory/base_layout.html' %}
+{% load static %}
 
 {% block content %}
     <h1>{{ inventory.name }}</h1>
@@ -6,6 +7,10 @@
         <div class="col-lg-8">
             <table id="inventory" class="table table-bordered">
                 <tbody>
+                    <tr>
+                        <td>Image</td>
+                        <td><img src="{% static 'placeholder.png' %}" alt="djangonautic" /></td>
+                    </tr>
                     <tr>
                         <td>Description</td>
                         <td>{{ inventory.description }}</td>
