@@ -1,0 +1,37 @@
+{% extends 'inventory/base_layout.html' %}
+
+{% block content %}
+    <h1>{{ inventory.name }}</h1>
+    <div class="row">
+        <div class="col-lg-8">
+            <table id="inventory" class="table table-bordered">
+                <tbody>
+                    <tr>
+                        <td>Description</td>
+                        <td>{{ inventory.description }}</td>
+                    </tr>
+                    <tr>
+                        <td>Note</td>
+                        <td>{{ inventory.note }}</td>
+                    </tr>
+                    <tr>
+                        <td>Stock</td>
+                        <td>{{ inventory.stock }}</td>
+                    </tr>
+                    <tr>
+                        <td>Availability</td>
+                        {% if item.availability %}
+                            <td>Yes</td>
+                        {% else %}
+                            <td>No</td>
+                        {% endif %}
+                    </tr>
+                    <tr>
+                        <td>Supplier</td>
+                        <td>{{ inventory.supplier.name }}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+{% endblock %}
