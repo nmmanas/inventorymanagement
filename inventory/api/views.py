@@ -6,4 +6,8 @@ from inventory.models import Supplier, Inventory
 
 class InventoryViewSet(viewsets.ModelViewSet):
     queryset = Inventory.objects.all()
-    serializer_class = InventorySerializer
+    serializer_class = InventorySerializer      
+
+    search_fields = (
+        'name',
+    )
