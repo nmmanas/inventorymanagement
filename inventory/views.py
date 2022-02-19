@@ -1,11 +1,19 @@
+import json
+
 from django.shortcuts import render
 
-from inventory.models import Inventory
+import requests
 
 def inventory(request):
-	inventory_items = Inventory.objects.all();
+	url = request.build_absolute_uri('/api/inventory')
+	response = requests.get(url)
+	inventory_items = response.json()
+
 	return render(request,'inventory/inventory.html', {'inventory_items': inventory_items})
 
 def inventory_detail(request, id):
-	inventory = Inventory.objects.get(id=id)
+	url = request.build_absolute_uri(f'/api/inventory/{id}')
+	response = requests.get(url)
+	inventory = response.json()
+	
 	return render(request,'inventory/inventory_detail.html', {'inventory': inventory})
