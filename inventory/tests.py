@@ -1,6 +1,8 @@
 from django.test import TestCase, Client
 from django.urls import reverse
 
+from unittest.mock import patch
+
 from inventory.models import Inventory, Supplier
 
 class InventoryTest(TestCase):
@@ -21,12 +23,14 @@ class InventoryTest(TestCase):
                 supplier= supplier,
             )
 
-    def test_inventory_list_url(self):
+    @patch("inventory.views.call_drf_api_endpoint", autospec=True)
+    def test_inventory_list_url(self, mock_call_drf_api_endpoint):
         url = reverse('inventory:list')
         response = self.client.get(url)
         self.assertEqual(response.status_code, 200)
 
-    def test_inventory_detail_url(self):
+    @patch("inventory.views.call_drf_api_endpoint", autospec=True)
+    def test_inventory_detail_url(self, mock_call_drf_api_endpoint):
         url = reverse('inventory:detail', args=(1,))
         response = self.client.get(url)
         self.assertEqual(response.status_code, 200)
